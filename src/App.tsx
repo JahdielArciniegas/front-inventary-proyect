@@ -1,33 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react"
+
+interface User {
+  username: string
+  password: string
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState<User | null>(null)
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+
+  const submit = (e : React.FormEvent) => {
+    e.preventDefault()
+    setUser({username, password})
+  } 
+
+  if (!user){
+    return (
+      <div className="form-login" onSubmit={submit}>
+        <h2>Inicio de Sesión</h2>
+        <form >
+          <div>
+            <label htmlFor="username">Nombre de usuario</label>
+            <input type="text" id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+          </div>
+          <div>
+            <label htmlFor="password">Contraseña</label>
+            <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          </div>
+          <button type="submit">Iniciar Sesión</button>
+        </form>
+      </div>
+    )
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h2>Usuario</h2>
+      <p>{user?.username}</p>
+      <button type="button" onClick={() => setUser(null)}>Cerrar Sesión</button>
     </>
   )
 }
