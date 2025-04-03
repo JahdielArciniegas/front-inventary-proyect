@@ -1,7 +1,9 @@
 import { useState } from "react"
+import loginService from "./assets/service/login"
 
 interface User {
   username: string
+  name: string
   password: string
 }
 
@@ -10,9 +12,14 @@ function App() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
-  const submit = (e : React.FormEvent) => {
+  const submit = async (e : React.FormEvent) => {
     e.preventDefault()
-    setUser({username, password})
+    try{
+      const user = await loginService.login(username, password)
+      setUser(user)
+    } catch (error){
+      console.log(error)
+    }
   } 
 
   if (!user){
@@ -38,6 +45,7 @@ function App() {
     <>
       <h2>Usuario</h2>
       <p>{user?.username}</p>
+      <p>{user?.name}</p>
       <button type="button" onClick={() => setUser(null)}>Cerrar Sesión</button>
     </>
   )
