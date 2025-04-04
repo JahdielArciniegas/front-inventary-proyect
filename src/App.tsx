@@ -4,11 +4,12 @@ import { Login } from "./components/Login"
 import Page from "./pages/Page"
 import { BrowserRouter as Router,Link } from "react-router"
 
-interface User {
+export interface User {
   username: string
   name: string
-  password: string
+  token: string
 }
+
 
 function App() {
   const [user, setUser] = useState<User | null>(null)
@@ -24,8 +25,8 @@ function App() {
   const submit = async (e : React.FormEvent) => {
     e.preventDefault()
     try{
-      const user = await loginService.login(username, password)
-      setUser(user)
+      const userLogin = await loginService.login(username, password)
+      setUser(userLogin)
       setUsername("")
       setPassword("")
     } catch (error){
