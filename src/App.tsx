@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { login } from "./reducers/userReducer"
 import { RootState } from "./store"
 import { setIngredients } from "./reducers/ingredientsReducer"
+import { setRecipes } from "./reducers/recipesReducer"
 
 export interface User {
   username: string
@@ -39,10 +40,12 @@ function App() {
     try{
       const user = await loginService.login(username, password)
       const ingredients = await ingredientsService.getUserIngredients(user.id)
+      const recipes = await recipesService.getUserRecipes(user.id)
       localStorage.setItem('loggedInventaryUser', JSON.stringify(user))
       recipesService.setTokenRecipes(user.token)
       ingredientsService.setTokenIngredients(user.token)
       dispatch(setIngredients(ingredients))
+      dispatch(setRecipes(recipes))
       dispatch(login(user))
       setUsername("")
       setPassword("")
