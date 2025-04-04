@@ -39,8 +39,10 @@ function App() {
     <>
     <Router>
       <nav>
+        <Link to="/">Home</Link>
         <Link to="/recipes">Recipes</Link>
         <Link to="/user">User</Link>
+        <Link to="/ingredients">Ingredients</Link>
       </nav>
       {!user ? <Login submit={submit} username={username} handleUsername={handleUsername} password={password} handlePassword={handlePassword}/> : <Page/> }
     </Router>
