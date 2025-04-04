@@ -8,11 +8,13 @@ import { BrowserRouter as Router,Link } from "react-router"
 import { useDispatch, useSelector } from "react-redux"
 import { login } from "./reducers/userReducer"
 import { RootState } from "./store"
+import { setIngredients } from "./reducers/ingredientsReducer"
 
 export interface User {
   username: string
   name: string
   token: string
+  id: string
 }
 
 export interface UserState {
@@ -36,9 +38,11 @@ function App() {
     e.preventDefault()
     try{
       const user = await loginService.login(username, password)
+      const ingredients = await ingredientsService.getUserIngredients(user.id)
       localStorage.setItem('loggedInventaryUser', JSON.stringify(user))
       recipesService.setTokenRecipes(user.token)
       ingredientsService.setTokenIngredients(user.token)
+      dispatch(setIngredients(ingredients))
       dispatch(login(user))
       setUsername("")
       setPassword("")
@@ -46,9 +50,6 @@ function App() {
       console.log(error)
     }
   } 
-
-  console.log(user.user)
-  
 
   return (
     <>

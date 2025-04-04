@@ -2,8 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { UserState, User } from '../App'
 
 
-
-
 const initialState : UserState = {
   user:null
 }
@@ -16,7 +14,8 @@ const userSlice = createSlice({
       state.user = {
         username: action.payload.username,
         name: action.payload.name,
-        token: action.payload.token
+        token: action.payload.token,
+        id: action.payload.id
       }
     },
     logout: (state : UserState) => {
