@@ -1,10 +1,21 @@
 import axios from "axios"
 const baseUrl = "http://localhost:3003/api/ingredient"
+import { newIngredient } from "../reducers/ingredientsReducer"
 
-let token = null
+let token : string | null = null
 
 const setTokenIngredients = (newToken : string) => {
   token = `Bearer ${newToken}`
+}
+
+const create = async (newIngredient : newIngredient) => {
+  const config = {
+    headers: {
+      authorization: token
+    }
+  }
+  const res = await axios.post(baseUrl, newIngredient, config)
+  return res.data
 }
 
 const getUserIngredients = async (userName : string) => {
@@ -13,4 +24,4 @@ const getUserIngredients = async (userName : string) => {
   return res.data
 }
 
-export default { setTokenIngredients, getUserIngredients }
+export default { setTokenIngredients, getUserIngredients, create }

@@ -13,5 +13,4 @@ const store = configureStore({
     recipes : recipesReducer
   }
 })
-
 export default store
