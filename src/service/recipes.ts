@@ -23,4 +23,11 @@ const getUserRecipes = async(username : string) => {
   const res = await req
   return res.data
 }
-export default { setTokenRecipes, getUserRecipes, create }
+
+const removeRecipe = async(id : string) => {
+  const req = axios.delete(`${baseUrl}/${id}`)
+  const res = await req
+  return res.data
+}
+
+export default { setTokenRecipes, getUserRecipes, create , removeRecipe}

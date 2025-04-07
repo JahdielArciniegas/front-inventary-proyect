@@ -29,16 +29,27 @@ const recipesSlice = createSlice({
     },
     appendRecipe(state, action : PayloadAction<Recipe>) {
       state.push(action.payload)
+    },
+    removeRecipe(state, action : PayloadAction<string>){
+      const id = action.payload
+      return state.filter(recipe => recipe.id !== id)
     }
   }
 })
 
-export const { setRecipes, clearRecipes, appendRecipe } = recipesSlice.actions
+export const { setRecipes, clearRecipes, appendRecipe, removeRecipe } = recipesSlice.actions
 export default recipesSlice.reducer
 
 export const createRecipe = (content : NewRecipe) => {
   return async (dispatch : AppDispatch) => {
     const newRecipe = await recipesService.create(content)
     dispatch(appendRecipe(newRecipe))
+  }
+}
+
+export const deleteRecipe = (id : string) => {
+  return async ( dispatch : AppDispatch) => {
+    await recipesService.removeRecipe(id)
+    dispatch(removeRecipe(id))
   }
 }

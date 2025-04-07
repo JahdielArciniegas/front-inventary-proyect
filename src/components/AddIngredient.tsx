@@ -4,7 +4,7 @@ import { createIngredient } from "../reducers/ingredientsReducer"
 import { AppDispatch } from "../store"
 
 const AddIngredient = () => {
-  const allAmounts = ["gr","ml","unidad"]
+  const allAmounts = ["kg","lt","unidad"]
   const [name,setName] = useState("")
   const [cost,setCost] = useState("")
   const [currency, setCurrency] = useState("DOLAR")
@@ -51,10 +51,10 @@ const AddIngredient = () => {
           </select>
         </div>
         <div>
-          <p>Cada cantidad se equivale a 1000 a excepción de unidad</p>
+          <p>Cada cantidad se equivale a 1 (ejemplo: 1 kg = 1000 gr)</p>
           <label htmlFor="amount">Amount</label>
           {allAmounts.map((a) => (
-            <button key={a} value={a} onClick={() => setAmount(a)}>{a}</button>
+            <button type="button" key={a} value={a} onClick={() => setAmount(a)}>{a}</button>
           ))}
         </div>
         <button type="submit">Create</button>

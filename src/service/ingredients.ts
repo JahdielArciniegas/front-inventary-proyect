@@ -24,4 +24,10 @@ const getUserIngredients = async (userName : string) => {
   return res.data
 }
 
-export default { setTokenIngredients, getUserIngredients, create }
+const removeIngredients = async (id : string) => {
+  const req = axios.delete(`${baseUrl}/${id}`)
+  const res = await req
+  return res.data
+}
+
+export default { setTokenIngredients, getUserIngredients, create, removeIngredients }

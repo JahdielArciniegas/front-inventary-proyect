@@ -50,15 +50,12 @@ const AddRecipe = () => {
           <input type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>
         <div>
-          <label htmlFor="cost">Cost</label>
-          <input type="text" id="cost" name="cost" value={cost} onChange={(e) => setCost(e.target.value)} />
-        </div>
-        <div>
           <label htmlFor="amount">Amount</label>
           <input type="text" id="amount" name="amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
         </div>
         <div>
           <h4>Ingredients</h4>
+          <p>Ingresa ingredientes en las unidades kg,lt o unidad</p>
           <label htmlFor="ingredientsAmount">Ingredients Amount</label>
           <input type="text" id="ingredientsAmount" name="ingredientsAmount" value={ingredientsAmount} onChange={(e) => setIngredientsAmount(e.target.value)} />
           <select name="ingredients" id="ingredients" value={ingredientSelect} onChange={(e) => setIngredientSelect(e.target.value)}>
@@ -68,6 +65,17 @@ const AddRecipe = () => {
             ))}
           </select>
           <button type="button" onClick={AddIngredient}>Add Ingredient</button>
+          <div>
+            {ingredients.length > 0 && ingredients.map((ingrediente) => (
+              <div key={ingrediente.id}>
+                <p>{ingrediente.amount}</p>
+                <button type="button" onClick={() => {
+                  const newIngredients = ingredients.filter((ing) => ing.id !== ingrediente.id)
+                  setIngredients(newIngredients)
+                }}>Remove</button>
+              </div>
+            ))}
+          </div>
         </div>
         <button type="submit">Create</button>
       </form>
