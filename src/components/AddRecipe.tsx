@@ -66,11 +66,11 @@ const AddRecipe = () => {
           </select>
           <button type="button" onClick={AddIngredient}>Add Ingredient</button>
           <div>
-            {ingredients.length > 0 && ingredients.map((ingrediente) => (
-              <div key={ingrediente.id}>
-                <p>{ingrediente.amount}</p>
+            {ingredients.length > 0 && ingredients.map((i) => (
+              <div key={i.id}>
+                <p>{ingredient.find((ing) => ing.id === i.id)?.name} - {i.amount} </p>
                 <button type="button" onClick={() => {
-                  const newIngredients = ingredients.filter((ing) => ing.id !== ingrediente.id)
+                  const newIngredients = ingredients.filter((ing) => ing.id !== i.id)
                   setIngredients(newIngredients)
                 }}>Remove</button>
               </div>

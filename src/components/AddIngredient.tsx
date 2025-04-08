@@ -11,16 +11,17 @@ const AddIngredient = () => {
   const [amount,setAmount] = useState("")
   const dispatch = useDispatch<AppDispatch>()
 
-  const submit = (e : React.FormEvent) => {
+  const submit = async(e : React.FormEvent) => {
     e.preventDefault()
+    let newCost : string = ""
     if(currency === "PESOS"){
-      const newCost = Number(cost)/4
-      setCost(String(newCost))
+      newCost = String(Number(cost)/4000)
     }
+    setCost(newCost)
 
     const newIngredient = {
       name,
-      cost,
+      cost : newCost,
       amount
     }
     try{

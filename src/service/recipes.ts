@@ -25,7 +25,12 @@ const getUserRecipes = async(username : string) => {
 }
 
 const removeRecipe = async(id : string) => {
-  const req = axios.delete(`${baseUrl}/${id}`)
+  const config = {
+    headers: {
+      authorization: token
+    }
+  }
+  const req = axios.delete(`${baseUrl}/${id}`, config)
   const res = await req
   return res.data
 }
