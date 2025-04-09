@@ -9,7 +9,7 @@ export const Recipes = () => {
   return (
     <div>
       <h2>Recetas</h2>
-      {recipes.map(recipe => <div key={recipe.id}>{recipe.title} - {recipe.cost} <button onClick={() => dispatch(deleteRecipe(recipe.id))}>remove</button></div>)}
+      {recipes.map(recipe => <div key={recipe.id}>{recipe.title} - {recipe.cost} - {Number(recipe.cost)*4000} <button onClick={() => dispatch(deleteRecipe(recipe.id))}>remove</button></div>)}
       <AddRecipe/> 
     </div>
   )
