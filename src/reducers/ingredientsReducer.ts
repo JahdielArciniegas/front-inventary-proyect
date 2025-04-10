@@ -9,7 +9,7 @@ export interface newIngredient {
   amount : string,
 }
 
-interface Ingredient extends newIngredient {
+export interface Ingredient extends newIngredient {
   user : User,
   id: string
 }

@@ -1,0 +1,139 @@
+.container{
+  height: 100%;
+  width: 100%;
+  background-color: var(--white);
+  border-radius: 2rem;
+  padding: 1rem;
+  position: relative;
+}
+
+h2{
+  text-align: center;
+}
+
+.container_recipe{
+  display:grid;
+  grid-template-rows: 1fr 1fr;
+  overflow-x: scroll;
+  height: 80%;
+  gap: 1rem;
+  padding: 1rem;
+  position: relative;
+}
+
+.add_recipe{
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--pastel-yellow);
+  border-radius: 2rem;
+  padding: 1rem;
+}
+.add_button{
+  position: absolute;
+  bottom: 6rem;
+  right: 6rem;
+}
+
+.add_button button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: var(--pastel-green);
+  color: var(--black);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &:hover{
+    background-color: var(--dark-pastel-green);
+    color: var(--white);
+  }
+}
+
+.recipe{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 100%;
+  background-color: var(--pastel-blue);
+  color: var(--black);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &:hover{
+    background-color: var(--dark-pastel-blue);
+    color: var(--white);
+  }
+  & > header{
+    inline-size: 100%;
+    background-color: var(--dark-pastel-blue);
+    text-align: center;
+    position: absolute;
+    top: 0;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+  }
+  & > footer{
+    inline-size: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+  }
+  & > button{
+    position: absolute;
+    background-color: transparent;
+    top: 0;
+    right: 0;
+    color: var(--pastel-pink);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    &:hover{
+      background-color: var(--dark-pastel-pink);
+      color: var(--white);
+    }
+  }
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  td{
+    text-align: center;
+  }
+}

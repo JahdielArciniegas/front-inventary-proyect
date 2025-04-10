@@ -2,18 +2,20 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { User } from '../App'
 import { AppDispatch } from '../store'
 import recipesService from '../service/recipes'
+import { Ingredient } from './ingredientsReducer'
 
 export interface NewRecipe {
   title : string,
   cost : string,
   amount : string
-  ingredients: {id : string, amount : string}[]
+  ingredients: {id : string, amount : string, ingredient : Ingredient}[]
 }
 
 export interface Recipe extends NewRecipe {
   id : string,
   user : User
 }
+
 
 const initialState : Recipe[] = []
 
