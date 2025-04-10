@@ -5,6 +5,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "./store"
 import NavBar from "./components/NavBar"
 import styles from "./App.module.css"
+import Footer from "./components/Footer"
 
 export interface User {
   username: string
@@ -32,6 +33,9 @@ function App() {
         {!user.user ? <Login/> : <Page/> }
       </main>
     </Router>
+    <footer className={styles.footer}>
+        <Footer/>
+      </footer>
     </div>
   )
 }

@@ -29,11 +29,15 @@ svg{
   width: 3rem
 }
 
-li:hover {
+li{
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+li:hover {
   background-color: var(--white);
   width: 100px;
   height: 100px;
