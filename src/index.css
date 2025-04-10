@@ -1,0 +1,17 @@
+:root {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  --primary-color : #EFE7DA;
+  --secondary-color : #B3907A;
+  --white : #f5f5eb;
+  --black : #c1b6a3
+
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}

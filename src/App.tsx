@@ -1,8 +1,10 @@
 import { Login } from "./components/Login"
 import Page from "./pages/Page"
-import { BrowserRouter as Router,Link } from "react-router"
+import { BrowserRouter as Router } from "react-router"
 import { useSelector } from "react-redux"
 import { RootState } from "./store"
+import NavBar from "./components/NavBar"
+import styles from "./App.module.css"
 
 export interface User {
   username: string
@@ -21,17 +23,16 @@ function App() {
   
 
   return (
-    <>
+    <div className={styles.container}>
     <Router>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/recipes">Recipes</Link>
-        <Link to="/user">User</Link>
-        <Link to="/ingredients">Ingredients</Link>
-      </nav>
-      {!user.user ? <Login/> : <Page/> }
+      <aside className={styles.navBar}>
+        <NavBar/>
+      </aside>
+      <main>
+        {!user.user ? <Login/> : <Page/> }
+      </main>
     </Router>
-    </>
+    </div>
   )
 }
 export default App
