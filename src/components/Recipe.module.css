@@ -30,6 +30,7 @@ h2{
   background-color: var(--pastel-yellow);
   border-radius: 2rem;
   padding: 1rem;
+  
 }
 .add_button{
   position: absolute;
@@ -76,21 +77,17 @@ h2{
   border: none;
   outline: none;
   cursor: pointer;
-  &:hover{
-    background-color: var(--dark-pastel-blue);
-    color: var(--white);
-  }
   & > header{
     inline-size: 100%;
-    background-color: var(--dark-pastel-blue);
+    font-family: "comic sans ms", sans-serif;
     text-align: center;
     position: absolute;
-    top: 0;
-    height: 60px;
+    top: 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #000000;
   }
   & > footer{
     inline-size: 100%;
@@ -101,23 +98,26 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #000000;
   }
-  & > button{
+  & > .button{
+    inline-size: 100%;
     position: absolute;
-    background-color: transparent;
+    display: flex;
+    justify-content: flex-end;
+    background-color: var(--dark-pastel-blue);
     top: 0;
     right: 0;
-    color: var(--pastel-pink);
+    color: var(--white);
     font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    &:hover{
-      background-color: var(--dark-pastel-pink);
-      color: var(--white);
+    & > button{
+      font-size: 1.3rem;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background-color: transparent;
+      &:hover{
+        color: var(--white);
+      }
     }
   }
 }
