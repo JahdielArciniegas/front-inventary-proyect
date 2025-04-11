@@ -2,8 +2,9 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../store"
 import { createRecipe, Recipe } from "../reducers/recipesReducer"
+import styles from "../components/Recipe.module.css"
 
-const AddRecipe = () => {
+const AddRecipe = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
   const dispatch = useDispatch<AppDispatch>()
   const [title, setTitle] = useState("")
   const ingredient = useSelector((state : RootState) => state.ingredients)
@@ -27,6 +28,7 @@ const AddRecipe = () => {
       setCost("")
       setAmount("")
       setIngredients([])
+      handleAddRecipe()
     } catch (error) {
       console.log(error)
     }
@@ -34,7 +36,8 @@ const AddRecipe = () => {
   const AddIngredient = () => {
     const newIngredient = {
       id : ingredientSelect,
-      amount : ingredientsAmount
+      amount : ingredientsAmount,
+      ingredient : ingredient.find((ing) => ing.id === ingredientSelect)!
     }
     setIngredients(ingredients.concat(newIngredient))
     setIngredientSelect("")
@@ -43,42 +46,54 @@ const AddRecipe = () => {
 
   return (
     <div>
-      <h3>Create new Recipe</h3>
+      <div>
+        <h3>Crear nueva receta</h3>
       <form onSubmit={submit} >
-        <div>
-          <label htmlFor="name">Name</label>
+        <div className={styles.input}>
+          <label htmlFor="name"><h4>Nombre</h4></label>
           <input type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>
-        <div>
-          <label htmlFor="amount">Amount</label>
+        <div className={styles.input}>
+          <label htmlFor="amount"><h4>Cantidad</h4></label>
           <input type="text" id="amount" name="amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
         </div>
-        <div>
-          <h4>Ingredients</h4>
+        <div className={styles.ingredient_recipe}>
+          <h4>Ingredientes</h4>
           <p>Ingresa ingredientes en las unidades kg,lt o unidad</p>
-          <label htmlFor="ingredientsAmount">Ingredients Amount</label>
-          <input type="text" id="ingredientsAmount" name="ingredientsAmount" value={ingredientsAmount} onChange={(e) => setIngredientsAmount(e.target.value)} />
-          <select name="ingredients" id="ingredients" value={ingredientSelect} onChange={(e) => setIngredientSelect(e.target.value)}>
-            <option value="" disabled>Seleccione un ingrediente</option>
+          
+          <div>
+            <label htmlFor="ingredients">Selecciona el ingrediente</label>
+            <select name="ingredients" id="ingredients" value={ingredientSelect} onChange={(e) => setIngredientSelect(e.target.value)}>
+            <option value="" disabled>Ingrediente...</option>
             {ingredient.map(ingrediente => (
               <option key={ingrediente.id} value={ingrediente.id}>{ingrediente.name}</option>
             ))}
           </select>
-          <button type="button" onClick={AddIngredient}>Add Ingredient</button>
+          </div>
           <div>
+          <label htmlFor="ingredientsAmount">Cantidad de ingredientes</label>
+          <input type="text" id="ingredientsAmount" name="ingredientsAmount" value={ingredientsAmount} onChange={(e) => setIngredientsAmount(e.target.value)} />
+          </div>
+          <button type="button" onClick={AddIngredient}>Agregar ingrediente</button>
+          <div className={styles.ingredient_list}>
+            <h4>Lista de ingredientes</h4>
             {ingredients.length > 0 && ingredients.map((i) => (
               <div key={i.id}>
-                <p>{ingredient.find((ing) => ing.id === i.id)?.name} - {i.amount} </p>
+                <p>{ingredient.find((ing) => ing.id === i.id)?.name} - {i.amount} {ingredient.find((ing) => ing.id === i.id)?.amount} </p>
                 <button type="button" onClick={() => {
                   const newIngredients = ingredients.filter((ing) => ing.id !== i.id)
                   setIngredients(newIngredients)
-                }}>Remove</button>
+                }}>Eliminar</button>
               </div>
             ))}
           </div>
         </div>
-        <button type="submit">Create</button>
+        <div className={styles.create_button}>
+            <button type="submit">Crear</button>
+        </div>
       </form>
+      </div>
+      <div className={styles.close} onClick={handleAddRecipe}>x</div>
     </div>
   )
 }

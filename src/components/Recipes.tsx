@@ -23,11 +23,11 @@ export const Recipes = () => {
       {recipes.map(recipe => <Recipe key={recipe.id} remove={removeRecipe} recipe={recipe}/>)}
         <div className={styles.add_button}>
         <button onClick={handleAddRecipe}>+</button>
-      </div>
+        </div>
       </div>
       {showCard && (
         <div className={styles.add_recipe}>
-          <AddRecipe/>
+          <AddRecipe handleAddRecipe={handleAddRecipe}/>
         </div>
       )}
     </div>
