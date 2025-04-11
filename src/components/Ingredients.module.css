@@ -1,0 +1,181 @@
+.ingredients{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    overflow-y: scroll;
+    & > thead{
+      & > tr{
+        & > th{
+          background-color: var(--black);
+          color: var(--white);
+          font-size: 1rem;
+          text-align: center;
+          padding: 0.5rem 1rem;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+
+}
+
+.add_button{
+  position: absolute;
+  bottom: 6rem;
+  right: 6rem;
+  & > button{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: var(--pastel-green);
+  color: var(--black);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &:hover{
+    background-color: var(--dark-pastel-green);
+    color: var(--white);
+  } 
+  }
+}
+
+.add_ingredient{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:rgba(0, 0, 0, 0.212) ;
+  border-radius: 2rem;
+  z-index: 10;
+  & > div {
+    padding: 1rem 2rem;
+    color: var(--black);
+    h3{
+      font-family: "comic sans ms", sans-serif;
+      text-align: center;
+    }
+    .input{
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1rem 0;
+
+      p{
+        font-size: 0.7rem;
+      }
+
+      input{
+        width: 90%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+        background-color: var(--pastel-yellow);
+        &:focus{
+          outline: none;
+          border-color: var(--black);
+        }
+      }
+      & > div > input{
+        width: 70%;
+      }
+      select{
+        width: 20%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 0.7rem;
+        background-color: var(--pastel-yellow);
+        &:focus{
+          outline: none;
+          border-color: var(--black);
+        }
+      }
+    }
+    width: 400px;
+    height: 400px;
+    background-color: var(--pastel-yellow);
+    position: relative;
+  }
+}
+
+.create_button{
+  position: absolute;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0.5rem;
+  height: 3rem;
+  background-color: var(--dark-pastel-green);
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &:hover{
+    background-color: var(--pastel-green);
+    color: var(--black);
+  }
+}
+
+button {
+  background-color: var(--black);
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 2rem;
+  &:hover{
+    background-color: var(--pastel-yellow);
+    color: var(--black);
+  }
+}
+
+.close{  
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: var(--black);
+  font-size: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent;
+  &:hover{
+    color: var(--white);
+    background-color: var(--pastel-pink);
+  }
+
+}
+
+.active{
+  background-color: var(--pastel-yellow);
+  color: var(--black);
+}

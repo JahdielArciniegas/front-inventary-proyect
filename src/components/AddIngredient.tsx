@@ -2,8 +2,9 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { createIngredient } from "../reducers/ingredientsReducer"
 import { AppDispatch } from "../store"
+import styles from "../components/Ingredients.module.css"
 
-const AddIngredient = () => {
+const AddIngredient = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
   const allAmounts = ["kg","lt","unidad"]
   const [name,setName] = useState("")
   const [cost,setCost] = useState("")
@@ -37,29 +38,35 @@ const AddIngredient = () => {
 
   return (
     <div>
+
       <h3>Create new Ingredient</h3>
       <form onSubmit={submit} >
-        <div>
+        <div className={styles.input}>
           <label htmlFor="name">Name</label>
           <input type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
-        <div>
+        <div className={styles.input}>
           <label htmlFor="cost">Cost</label>
-          <input type="text" id="cost" name="cost" value={cost} onChange={(e) => setCost(e.target.value)} />
+          <div>
+            <input type="text" id="cost" name="cost" value={cost} onChange={(e) => setCost(e.target.value)} />
           <select name="currency" id="currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
             <option value="DOLAR">DOLAR</option>
             <option value="PESOS">PESOS</option>
           </select>
+          </div>  
         </div>
-        <div>
+        <div className={styles.input}>
           <p>Cada cantidad se equivale a 1 (ejemplo: 1 kg = 1000 gr)</p>
           <label htmlFor="amount">Amount</label>
-          {allAmounts.map((a) => (
-            <button type="button" key={a} value={a} onClick={() => setAmount(a)}>{a}</button>
+          <div>
+            {allAmounts.map((a) => (
+            <button type="button" key={a} value={a} onClick={() => setAmount(a)} className={a === amount ? styles.active : ""}>{a}</button>
           ))}
+          </div>
         </div>
-        <button type="submit">Create</button>
+        <button className={styles.create_button} type="submit">Create</button>
       </form>
+      <div className={styles.close} onClick={handleAddRecipe}>x</div>
     </div>
   )
 }

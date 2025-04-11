@@ -1,9 +1,6 @@
 .container{
   height: 100%;
   width: 100%;
-  background-color: var(--primary-color);
-  border-radius: 2rem;
-  padding: 1rem;
 }
 
 h2{
