@@ -6,6 +6,7 @@ import { setRecipes } from "../reducers/recipesReducer";
 import loginService from "../service/login";
 import ingredientsService from "../service/ingredients";
 import recipesService from "../service/recipes";
+import styles from "./Login.module.css"
 
 export const Login = () => {
   const [username, setUsername] = useState<string>("")
@@ -37,14 +38,14 @@ export const Login = () => {
     }
   } 
   return (
-      <div className="form-login" onSubmit={submit}>
+      <div className={styles.form} onSubmit={submit}>
         <h2>Inicio de Sesión</h2>
         <form >
-          <div>
+          <div className={styles.input}>
             <label htmlFor="username">Nombre de usuario</label>
             <input type="text" id="username" name="username" value={username} onChange={handleUsername} />
           </div>
-          <div>
+          <div className={styles.input}>
             <label htmlFor="password">Contraseña</label>
             <input type="password" id="password" name="password" value={password} onChange={handlePassword} />
           </div>
