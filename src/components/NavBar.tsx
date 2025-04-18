@@ -11,10 +11,10 @@ const NavBar = () => {
   return (
       <nav>
         <ul className={style.ul}>
-          <Link to="/"><li onClick={() => setSelect("HOME")} className={select === "HOME" ? style.active : ""}><HomeIcon/>Home</li></Link>
-          <Link to="/recipes"><li onClick={() => setSelect("RECIPE")} className={select === "RECIPE" ? style.active : ""}><RecipesIcon/>Recipes</li></Link>
-          <Link to="/ingredients"><li onClick={() => setSelect("INGREDIENT")} className={select === "INGREDIENT" ? style.active : ""}><IngredientsIcon/>Ingredients</li></Link>
-          <Link to="/user"><li onClick={() => setSelect("USER")} className={select === "USER" ? style.active : ""}><UserIcon/>User</li></Link>
+          <Link to="/"><li onClick={() => setSelect("HOME")} className={select === "HOME" ? style.active : ""}><HomeIcon/>Inicio</li></Link>
+          <Link to="/recipes"><li onClick={() => setSelect("RECIPE")} className={select === "RECIPE" ? style.active : ""}><RecipesIcon/>Recetas</li></Link>
+          <Link to="/ingredients"><li onClick={() => setSelect("INGREDIENT")} className={select === "INGREDIENT" ? style.active : ""}><IngredientsIcon/>Ingredientes</li></Link>
+          <Link to="/user"><li onClick={() => setSelect("USER")} className={select === "USER" ? style.active : ""}><UserIcon/>Usuario</li></Link>
         </ul>
       </nav>
   )

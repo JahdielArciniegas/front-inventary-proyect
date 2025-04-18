@@ -1,17 +1,20 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useAppDispatch } from "../hooks"
 import { logout } from "../reducers/userReducer"
 import { clearIngredients } from "../reducers/ingredientsReducer"
 import { RootState } from "../store"
 import styles from "./Home.module.css"
 import HeaderComponent from "./HeaderComponent"
+import { setNotification } from "../reducers/notificationReducer"
+import { useSelector } from "react-redux"
 
 const Home = () => {
   const {user} = useSelector((state : RootState) => state.user)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const logOut = () => {
     localStorage.removeItem("loggedInventaryUser")
     dispatch(logout())
     dispatch(clearIngredients())
+    dispatch(setNotification("Se a cerrado sesión exitosamente", 3))
   }
 
   return (

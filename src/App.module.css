@@ -4,6 +4,7 @@
   height: 100dvh;
   grid-template-rows: 1fr auto;
   gap: 1rem;
+  position: relative;
 }
 
 .footer{

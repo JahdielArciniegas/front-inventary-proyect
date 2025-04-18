@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../store"
 import { createRecipe, Recipe } from "../reducers/recipesReducer"
 import styles from "../components/Recipe.module.css"
+import { setError, setNotification } from "../reducers/notificationReducer"
 
 const AddRecipe = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
   const dispatch = useDispatch<AppDispatch>()
@@ -29,8 +30,10 @@ const AddRecipe = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
       setAmount("")
       setIngredients([])
       handleAddRecipe()
-    } catch (error) {
-      console.log(error)
+      dispatch(setNotification("Receta creada exitosamente", 3))
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (e) {
+      dispatch(setError("Error al crear receta", 3))
     }
   }
   const AddIngredient = () => {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../hooks";
 import { login } from "../reducers/userReducer";
 import { setIngredients } from "../reducers/ingredientsReducer";
 import { setRecipes } from "../reducers/recipesReducer";
@@ -7,11 +7,12 @@ import loginService from "../service/login";
 import ingredientsService from "../service/ingredients";
 import recipesService from "../service/recipes";
 import styles from "./Login.module.css"
+import { setError, setNotification } from "../reducers/notificationReducer";
 
 export const Login = () => {
   const [username, setUsername] = useState<string>("")
   const [password, setPassword] = useState<string>("")
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const handleUsername = (e : React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value)
@@ -33,8 +34,10 @@ export const Login = () => {
       dispatch(login(user))
       setUsername("")
       setPassword("")
-    } catch (error){
-      console.log(error)
+      dispatch(setNotification("Inicio de sesión exitoso", 3))
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (e){
+      dispatch(setError("Error al iniciar sesión", 3))
     }
   } 
   return (
@@ -54,5 +57,8 @@ export const Login = () => {
       </div>
   )
 }
+
+
+export default Login
 
 

@@ -6,6 +6,7 @@ import { RootState } from "./store"
 import NavBar from "./components/NavBar"
 import styles from "./App.module.css"
 import Footer from "./components/Footer"
+import Notification from "./components/Notification"
 
 export interface User {
   username: string
@@ -21,10 +22,12 @@ export interface UserState {
 
 function App() {
   const user = useSelector((state : RootState) => state.user)
+  const notification = useSelector((state : RootState) => state.notification.notification)
+  const error = useSelector((state : RootState) => state.notification.error)
   
-
   return (
     <div className={styles.container}>
+    <Notification notification={notification} error={error} />
     <Router>
       <aside className={styles.navBar}>
         <NavBar/>

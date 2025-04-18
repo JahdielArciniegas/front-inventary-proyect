@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { createIngredient } from "../reducers/ingredientsReducer"
 import { AppDispatch } from "../store"
 import styles from "../components/Ingredients.module.css"
+import { setError, setNotification } from "../reducers/notificationReducer"
 
 const AddIngredient = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
   const allAmounts = ["kg","lt","unidad"]
@@ -31,8 +32,10 @@ const AddIngredient = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
       setAmount("")
       setCost("")
       setCurrency("DOLAR")
-    } catch (error){
-      console.log(error)
+      dispatch(setNotification("Ingrediente creado exitosamente", 3))
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (e){
+      dispatch(setError("Error al crear ingrediente", 3))
     }
   }
 

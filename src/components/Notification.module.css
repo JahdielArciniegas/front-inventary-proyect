@@ -1,0 +1,21 @@
+.container {
+  position: absolute;
+  right: 0rem;
+  top: 4rem;
+  font-family: "comic sans ms", sans-serif;
+  font-size: 1.2rem;
+}
+
+.notification {
+  padding: 1rem 4rem;
+  background-color: var(--pastel-green);
+  border-start-start-radius: 2rem;
+  border-end-start-radius: 2rem;  
+}
+
+.error {
+  padding: 1rem 4rem;
+  background-color: var(--pastel-pink);
+  border-start-start-radius: 2rem;
+  border-end-start-radius: 2rem;  
+}
