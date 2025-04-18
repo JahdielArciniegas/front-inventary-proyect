@@ -4,6 +4,7 @@ import AddIngredient from "./AddIngredient"
 import { deleteIngredient} from "../reducers/ingredientsReducer"
 import styles from "./Ingredients.module.css"
 import { useState } from "react"
+import { setError, setNotification } from "../reducers/notificationReducer"
 const Ingredients = () => {
   const ingredients = useSelector((state : RootState) => state.ingredients)
   const dispatch = useDispatch<AppDispatch>()
@@ -11,6 +12,16 @@ const Ingredients = () => {
   const handleAddRecipe = () => {
     setShowCard(!showCard)
   }
+  const removeIngredients = (id : string) => {
+    try{
+      dispatch(deleteIngredient(id))
+      dispatch(setNotification("Ingrediente eliminado exitosamente", 3))
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (e) {
+      dispatch(setError("Error al eliminar ingrediente", 3))
+    }
+  }
+
   return (
     <div>
       <div className={styles.ingredients}>
@@ -25,7 +36,7 @@ const Ingredients = () => {
           </tr>
         </thead>
         <tbody>
-          {ingredients.map(ingredient => <tr key={ingredient.id}><td>{ingredient.name}</td><td>{ingredient.amount}</td><td>{ingredient.cost}</td><td><button onClick={() => dispatch(deleteIngredient(ingredient.id))}>remove</button></td></tr>)}
+          {ingredients.map(ingredient => <tr key={ingredient.id}><td>{ingredient.name}</td><td>{ingredient.amount}</td><td>{ingredient.cost}</td><td><button onClick={() => removeIngredients(ingredient.id)}>remove</button></td></tr>)}
         </tbody>
       </table>
       </div>

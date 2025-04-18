@@ -1,3 +1,8 @@
+section{
+  height: 100%;
+  width: 100%;
+}
+
 .header{
   display: flex;
   justify-content: space-between;
@@ -19,7 +24,7 @@
 
 .content{
   display: flex;
-  height: 400px;
+  height: 80%;
   justify-content: center;
   align-items: center;
   gap: 2rem;
@@ -42,7 +47,8 @@
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
-  padding: 0 0.5rem;
+  gap: 1rem;
+  padding: 1rem;
   h3{
     font-family: "comic sans ms", sans-serif;
     color: #000;

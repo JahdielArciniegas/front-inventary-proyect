@@ -61,11 +61,15 @@
   justify-content: center;
   align-items: center;
   background-color:rgba(0, 0, 0, 0.212) ;
-  border-radius: 2rem;
   z-index: 10;
   & > div {
     padding: 1rem 2rem;
     color: var(--black);
+    & > div{
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
     h3{
       font-family: "comic sans ms", sans-serif;
       text-align: center;

@@ -5,13 +5,20 @@ import { deleteRecipe } from "../reducers/recipesReducer"
 import styles from "./Recipe.module.css"
 import Recipe from "./Recipe"
 import { useState } from "react"
+import { setError, setNotification } from "../reducers/notificationReducer"
 
 export const Recipes = () => {
   const recipes = useSelector((state : RootState) => state.recipes)
   const [showCard, setShowCard] = useState(false)
   const dispatch = useDispatch<AppDispatch>()
   const removeRecipe = (id : string) => {
-    dispatch(deleteRecipe(id))
+    try{
+      dispatch(deleteRecipe(id))
+      dispatch(setNotification("Receta eliminada exitosamente", 3))
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (e) {
+      dispatch(setError("Error al eliminar receta", 3))
+    }
   }
   const handleAddRecipe = () => {
     setShowCard(!showCard)

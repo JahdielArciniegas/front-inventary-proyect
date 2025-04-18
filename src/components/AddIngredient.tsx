@@ -18,6 +18,8 @@ const AddIngredient = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
     let newCost : string = ""
     if(currency === "PESOS"){
       newCost = String(Number(cost)/4000)
+    }else{
+      newCost = cost
     }
     setCost(newCost)
 

@@ -4,6 +4,7 @@
   top: 4rem;
   font-family: "comic sans ms", sans-serif;
   font-size: 1.2rem;
+  z-index: 100;
 }
 
 .notification {
