@@ -8,18 +8,6 @@ import styles from "./App.module.css"
 import Footer from "./components/Footer"
 import Notification from "./components/Notification"
 
-export interface User {
-  username: string
-  name: string
-  token: string
-  id: string
-}
-
-export interface UserState {
-  user : User | null
-}
-
-
 function App() {
   const user = useSelector((state : RootState) => state.user)
   const notification = useSelector((state : RootState) => state.notification.notification)

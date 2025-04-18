@@ -1,10 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { AppDispatch } from "../store"
 
-interface NotificationState {
-  notification: string | null
-  error: string | null
-}
+import { NotificationState } from "../types"
 
 const initialState: NotificationState = {
   notification: null,
