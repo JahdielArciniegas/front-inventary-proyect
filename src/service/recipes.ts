@@ -1,7 +1,7 @@
 let token : string | null = null
 const baseUrl = "http://localhost:3003/api/recipe"
 import axios from "axios"
-import { NewRecipe } from "../reducers/recipesReducer"
+import { NewRecipe } from "../types"
 
 
 const setTokenRecipes = (newToken : string) => {
@@ -15,6 +15,17 @@ const create = async (newRecipe : NewRecipe) => {
     }
   }
   const res = await axios.post(baseUrl, newRecipe, config)
+  return res.data
+}
+
+const update = async(id : string, newRecipe : NewRecipe) => {
+  const config = {
+    headers: {
+      authorization: token
+    }
+  }
+  const req = axios.put(`${baseUrl}/${id}`, newRecipe, config)
+  const res = await req
   return res.data
 }
 
@@ -35,4 +46,4 @@ const removeRecipe = async(id : string) => {
   return res.data
 }
 
-export default { setTokenRecipes, getUserRecipes, create , removeRecipe}
+export default { setTokenRecipes, getUserRecipes, create, update , removeRecipe}

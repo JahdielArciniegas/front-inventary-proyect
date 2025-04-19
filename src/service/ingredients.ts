@@ -1,6 +1,6 @@
 import axios from "axios"
 const baseUrl = "http://localhost:3003/api/ingredient"
-import { newIngredient } from "../reducers/ingredientsReducer"
+import { newIngredient } from "../types"
 
 let token : string | null = null
 
@@ -17,6 +17,18 @@ const create = async (newIngredient : newIngredient) => {
   const res = await axios.post(baseUrl, newIngredient, config)
   return res.data
 }
+
+const update = async(id : string, newIngredient : newIngredient) => {
+  const config = {
+    headers: {
+      authorization: token
+    }
+  }
+  const req = axios.put(`${baseUrl}/${id}`, newIngredient, config)
+  const res = await req
+  return res.data
+}
+
 
 const getUserIngredients = async (userName : string) => {
   const req = axios.get(`${baseUrl}/${userName}`)
@@ -35,4 +47,4 @@ const removeIngredients = async (id : string) => {
   return res.data
 }
 
-export default { setTokenIngredients, getUserIngredients, create, removeIngredients }
+export default { setTokenIngredients, getUserIngredients, create, removeIngredients, update}

@@ -44,14 +44,14 @@ const AddIngredient = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
   return (
     <div>
 
-      <h3>Create new Ingredient</h3>
+      <h3>Agregar Nuevo Ingrediente</h3>
       <form onSubmit={submit} >
         <div className={styles.input}>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Nombre</label>
           <input type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div className={styles.input}>
-          <label htmlFor="cost">Cost</label>
+          <label htmlFor="cost">Costo</label>
           <div>
             <input type="text" id="cost" name="cost" value={cost} onChange={(e) => setCost(e.target.value)} />
           <select name="currency" id="currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
@@ -62,7 +62,7 @@ const AddIngredient = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
         </div>
         <div className={styles.input}>
           <p>Cada cantidad se equivale a 1 (ejemplo: 1 kg = 1000 gr)</p>
-          <label htmlFor="amount">Amount</label>
+          <label htmlFor="amount">Unidad de Medida</label>
           <div>
             {allAmounts.map((a) => (
             <button type="button" key={a} value={a} onClick={() => setAmount(a)} className={a === amount ? styles.active : ""}>{a}</button>
