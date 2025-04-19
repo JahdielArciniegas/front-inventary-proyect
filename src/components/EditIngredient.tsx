@@ -4,9 +4,12 @@ import {  useSelector } from "react-redux"
 import { updateIngredient } from "../reducers/ingredientsReducer"
 import { useAppDispatch } from "../hooks"
 import { Ingredient} from "../types"
+import { fetchRecipes } from "../reducers/recipesReducer"
+import styles from "../components/Ingredients.module.css"
 
-const EditIngredient = ({id} : {id : string}) => {
+const EditIngredient = ({id,handleEditRecipe} : {id : string, handleEditRecipe : () => void}) => {
   const ingredient = useSelector((state : RootState) => state.ingredients.find((ing) => ing.id === id))
+  const user = useSelector((state : RootState) => state.user)
   const [amount,setAmount] = useState(ingredient?.amount)
   const [cost,setCost] = useState(ingredient?.cost)
   const [currency, setCurrency] = useState("DOLAR")
@@ -38,18 +41,22 @@ const EditIngredient = ({id} : {id : string}) => {
       user : ingredient.user,
       id : ingredient.id
     }
-    dispatch(updateIngredient(id, newIngredient))
+    await dispatch(updateIngredient(id, newIngredient))
+    if(!user.user){
+      return 
+    }
+    await dispatch(fetchRecipes(user.user.id))
   }
   return (
     <div>
       <h3>Editar Ingrediente</h3>
       <h4>{ingredient?.name}</h4>
       <form onSubmit={submit}>
-        <div>
+        <div className={styles.input}>
           <label htmlFor="amount">Unidad</label>
           <input type="text" id="amount" name="amount" value={amount} onChange={(e) => setAmount(e.target.value)}/>
         </div>
-        <div>
+        <div className={styles.input}>
           <label htmlFor="cost">Costo</label>
           <div>
             <input type="text" id="cost" name="cost" value={cost} onChange={(e) => setCost(e.target.value)} />
@@ -59,8 +66,9 @@ const EditIngredient = ({id} : {id : string}) => {
           </select>
           </div>
         </div>
-        <button type="submit">Editar</button>
+        <button className={styles.create_button} type="submit">Editar</button>
       </form>
+      <div className={styles.close} onClick={handleEditRecipe}>x</div>
     </div>
   )
 }

@@ -43,7 +43,6 @@ const AddIngredient = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
 
   return (
     <div>
-
       <h3>Agregar Nuevo Ingrediente</h3>
       <form onSubmit={submit} >
         <div className={styles.input}>

@@ -41,3 +41,10 @@ export const deleteRecipe = (id : string) => {
     dispatch(removeRecipe(id))
   }
 }
+
+export const fetchRecipes = (username : string) => {
+  return async (dispatch: AppDispatch) => {
+    const recetas = await recipesService.getUserRecipes(username);
+    dispatch(setRecipes(recetas));
+  };
+};

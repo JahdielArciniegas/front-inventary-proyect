@@ -13,11 +13,13 @@ const Ingredients = () => {
   const handleAddRecipe = () => {
     setShowCard(!showCard)
   }
-  const handleEdit = (id : string) => {
+  const handleEdit = () => {
     showEditCard(!editCard)
+  }
+  const handleEditIngredient = (id : string) => {
+    handleEdit()
     setIngredient(id)
   }
-
   return (
     <div>
       <div className={styles.ingredients}>
@@ -32,7 +34,7 @@ const Ingredients = () => {
           </tr>
         </thead>
         <tbody>
-          {ingredients.map(ingredient => <tr key={ingredient.id}><td>{ingredient.name}</td><td>{ingredient.amount}</td><td>{ingredient.cost}</td><td><button onClick={() => handleEdit(ingredient.id)}>Editar</button></td></tr>)}
+          {ingredients.map(ingredient => <tr key={ingredient.id}><td>{ingredient.name}</td><td>{ingredient.amount}</td><td>{ingredient.cost}</td><td><button onClick={() => handleEditIngredient(ingredient.id)}>Editar</button></td></tr>)}
         </tbody>
       </table>
       </div>
@@ -40,8 +42,8 @@ const Ingredients = () => {
       <button onClick={handleAddRecipe}>+</button>
       </div>
       {editCard && (
-        <div>
-          <EditIngredient id={ingredient}/>
+        <div className={styles.add_ingredient}>
+          <EditIngredient id={ingredient} handleEditRecipe={handleEdit}/>
         </div>
       )}
       {showCard && (

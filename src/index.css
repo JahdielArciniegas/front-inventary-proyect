@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  background-color: var(--black);
   --primary-color: #F0EADF;         
   --secondary-color: #A67C63;       
   --white: #FAFAF5;                 
