@@ -1,13 +1,27 @@
-import { Recipe as RecipeType } from "../types"
-import styles from "./Recipe.module.css"
-const Recipe = ({recipe,remove}: {recipe : RecipeType, remove : (id:string) => void}) => {
-  return (
-    <div className={styles.recipe}>
-      <div className={styles.button}>
-        <button onClick={() => remove(recipe.id)}>x</button>
+import { useSelector } from "react-redux"
+import { RootState } from "../store"
+import { useParams } from "react-router"
+
+const Recipe = () => {
+  const {id} = useParams()
+  const recipe = useSelector((state : RootState) => state.recipes.find(recipe => recipe.id === id))
+
+  if(!recipe){
+    return (
+      <div>
+        <h2>Receta no encontrada</h2>
       </div>
-      <header>{recipe.title}</header>
-      <footer>Dolar :{recipe.cost} - Pesos :{Number(recipe.cost)*4000}</footer>
+    )
+  }
+
+  return (
+    <div>
+      <div>
+        <h2>{recipe?.title}</h2>
+      </div>
+      <div>
+        <label htmlFor=""></label>
+      </div>
     </div>
   )
 }
