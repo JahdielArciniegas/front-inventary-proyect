@@ -10,6 +10,8 @@ h2{
 .container_recipe{
   display:grid;
   grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: column;
   overflow-x: scroll;
   height: 80%;
   gap: 1rem;
@@ -31,19 +33,29 @@ h2{
   & > div {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding: 1rem 2rem;
     color: var(--black);
     div{
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
     }
     h3{
       padding: 0;
       font-family: "comic sans ms", sans-serif;
       text-align: center;
+    }
+    select{
+      color: var(--black);
+      width: 10rem;
+      background-color: var(--pastel-yellow);
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      &:focus{
+        outline: none;
+        border-color: var(--black);
+      }
     }
     .input{
       display: flex;
@@ -198,12 +210,16 @@ h2{
   border: none;
   outline: none;
   cursor: pointer;
-  & > header{
+  & > a{
+    text-decoration: none;
+    position: relative;
+  }
+  & > a > header{
     inline-size: 100%;
     font-family: "comic sans ms", sans-serif;
     text-align: center;
     position: absolute;
-    top: 2rem;
+    top: -5rem;
     font-size: 1.1rem;
     font-weight: bold;
     display: flex;
@@ -230,6 +246,7 @@ h2{
     right: 0;
     color: var(--white);
     font-size: 1rem;
+    z-index: 10;
     & > button{
       font-size: 1.3rem;
       cursor: pointer;

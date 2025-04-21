@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../store"
-import { createRecipe, Recipe } from "../reducers/recipesReducer"
+import { createRecipe } from "../reducers/recipesReducer"
 import styles from "../components/Recipe.module.css"
 import { setError, setNotification } from "../reducers/notificationReducer"
+import { Recipe } from "../types"
 
 const AddRecipe = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
   const dispatch = useDispatch<AppDispatch>()
@@ -11,6 +12,7 @@ const AddRecipe = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
   const ingredient = useSelector((state : RootState) => state.ingredients)
   const [ingredients, setIngredients] = useState<Recipe['ingredients']>([])
   const [cost, setCost] = useState("")
+  const [unit, setUnit] = useState("Molde Circular")
   const [amount, setAmount] = useState("")
   const [ingredientsAmount, setIngredientsAmount] = useState("")
   const [ingredientSelect, setIngredientSelect] = useState("")
@@ -19,14 +21,16 @@ const AddRecipe = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
     e.preventDefault()
     const newRecipe = {
       title,
-      cost,
+      unit : unit as "Molde Circular" | "Molde Rectangular" | "Unidad",
       amount,
+      cost,
       ingredients,
     }
     try {
       dispatch(createRecipe(newRecipe))
       setTitle("")
       setCost("")
+      setUnit("")
       setAmount("")
       setIngredients([])
       handleAddRecipe()
@@ -50,11 +54,19 @@ const AddRecipe = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
   return (
     <div>
       <div>
-        <h3>Crear nueva receta</h3>
+        <h3>Crear nueva receta</h3> 
       <form onSubmit={submit} >
         <div className={styles.input}>
           <label htmlFor="name"><h4>Nombre</h4></label>
           <input type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+        </div>
+        <div className={styles.input}>
+          <label htmlFor="unit"><h4>Unidad</h4></label>
+          <select name="unit" id="unit" value={unit} onChange={(e) => setUnit(e.target.value)}>
+            <option value="Molde Circular">Molde Circular</option>
+            <option value="Molde Rectangular">Molde Rectangular</option>
+            <option value="Unidad">Unidad</option>
+          </select>
         </div>
         <div className={styles.input}>
           <label htmlFor="amount"><h4>Cantidad</h4></label>

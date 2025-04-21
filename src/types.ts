@@ -17,8 +17,9 @@ export interface NotificationState {
 export interface NewRecipe {
   title : string,
   cost : string,
-  amount : string
-  ingredients: {id : string, amount : string, ingredient : Ingredient}[]
+  amount : string,
+  unit : "Molde Circular"| "Molde Rectangular" | "Unidad",
+  ingredients: {id:string ,amount : string, ingredient : Ingredient }[]
 }
 
 export interface Recipe extends NewRecipe {
