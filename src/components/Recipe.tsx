@@ -2,6 +2,10 @@ import { useSelector } from "react-redux"
 import { RootState } from "../store"
 import { useParams } from "react-router"
 import { useState } from "react"
+import CalcRecipe from "./CalcRecipe"
+
+
+
 
 const Recipe = () => {
   const {id} = useParams()
@@ -10,6 +14,9 @@ const Recipe = () => {
   const [ingredientsAmount, setIngredientsAmount] = useState(recipe?.ingredients.map(i => ({id : i.id, amount : i.amount})) || [])
   const [editAmount, setEditAmount] = useState(true)
   const [unit, setUnit] = useState(recipe?.unit)
+  const [calUnit, setCalUnit] = useState(recipe?.unit)
+  const [calAmount, setCalAmount] = useState(recipe?.amount)
+
 
   if(!recipe){
     return (
@@ -25,6 +32,7 @@ const Recipe = () => {
         <h2>{recipe?.title}<button onClick={() => setEditAmount(!editAmount)} type="button">{editAmount ? "Editar" : "Cancelar"}</button></h2>
       </div>
       <div>
+        <div>
         <label htmlFor="">Unidad</label>
         <select value={unit} onChange={(e) => setUnit(e.target.value as "Molde Circular" | "Molde Rectangular" | "Unidad")} disabled={editAmount}>
           <option value="Molde Circular">Molde Circular</option>
@@ -52,6 +60,27 @@ const Recipe = () => {
         {unit === "Unidad" && <div>Costo Unitario {Number(recipe.cost) / Number(amount)}</div>}
         <label htmlFor="">Costo total</label>
         <p>{recipe.cost}</p>
+      </div>
+      </div>
+      <div>
+        <h3>Comprueba el precio de la receta con otras proporciones aqui...</h3>
+        <div>
+          <label htmlFor="">Unidad</label>
+          <select value={calUnit} onChange={(e) => setCalUnit(e.target.value as "Molde Circular" | "Molde Rectangular" | "Unidad")}>
+            <option value="Molde Circular">Molde Circular</option>
+            <option value="Molde Rectangular">Molde Rectangular</option>
+            <option value="Unidad">Unidad</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="">Cantidad</label>
+          <input type="text" value={calAmount} onChange={(e) => setCalAmount(e.target.value)}/>
+        </div>
+        <div>
+          <label htmlFor="">Costo total</label>{
+            unit && calUnit && calAmount && <CalcRecipe recipe={recipe} unit={calUnit} amount={calAmount}/>
+          }
+        </div>
       </div>
     </div>
   )
