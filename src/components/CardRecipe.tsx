@@ -12,7 +12,7 @@ const CardRecipe = ({recipe,remove}: {recipe : RecipeType, remove : (id:string) 
       <Link to={`/recipes/${recipe.id}`}>
         <header>{recipe.title}</header>
       </Link>
-      <footer>Dolar :{recipe.cost} - Pesos :{Number(recipe.cost)*4000}</footer>
+      <footer>Dolar :{Number(recipe.cost).toFixed(2)} - Pesos :{(Number(recipe.cost)*4000).toFixed(0)}</footer>
     </div>
     
   )
