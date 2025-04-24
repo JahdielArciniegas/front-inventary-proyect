@@ -17,14 +17,15 @@ const AddRecipe = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
   const [ingredientsAmount, setIngredientsAmount] = useState("")
   const [ingredientSelect, setIngredientSelect] = useState("")
 
-  const submit = (e : React.FormEvent) => {
-    e.preventDefault()
-    const newRecipe = {
-      title,
-      unit : unit as "Molde Circular" | "Molde Rectangular" | "Unidad",
-      amount,
-      cost,
-      ingredients,
+const submit = (e : React.FormEvent) => {
+  e.preventDefault()
+  
+  const newRecipe = {
+    title,
+    unit : unit as "Molde Circular" | "Molde Rectangular" | "Unidad",
+    amount,
+    cost,
+    ingredients,
     }
     try {
       dispatch(createRecipe(newRecipe))
@@ -40,6 +41,8 @@ const AddRecipe = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
       dispatch(setError("Error al crear receta", 3))
     }
   }
+
+
   const AddIngredient = () => {
     const newIngredient = {
       id : ingredientSelect,
@@ -50,7 +53,7 @@ const AddRecipe = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
     setIngredientSelect("")
     setIngredientsAmount("")
   }
-
+  
   return (
     <div>
       <div>
@@ -69,8 +72,8 @@ const AddRecipe = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
           </select>
         </div>
         <div className={styles.input}>
-          <label htmlFor="amount"><h4>Cantidad</h4></label>
-          <input type="text" id="amount" name="amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
+          <label htmlFor="amount"><h4>{unit === "Unidad" ? "Unidades" : unit === "Molde Circular" ? "Diametro" : "Medida"}</h4></label>
+          <input type="text" id="amount" name="amount" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder={unit === "Unidad" ? "Unidades formato 1" : unit === "Molde Circular" ? "Diametro formato 1" : "Medida en formato 1x1"}/>
         </div>
         <div className={styles.ingredient_recipe}>
           <h4>Ingredientes</h4>
