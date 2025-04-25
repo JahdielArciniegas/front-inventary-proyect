@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { RootState } from "../store"
+import { RootState } from "../../store"
 import AddIngredient from "./AddIngredient"
 import styles from "./Ingredients.module.css"
 import { useState } from "react"

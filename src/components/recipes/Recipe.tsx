@@ -1,11 +1,8 @@
 import { useSelector } from "react-redux"
-import { RootState } from "../store"
+import { RootState } from "../../store"
 import { useParams } from "react-router"
 import { useState } from "react"
 import CalcRecipe from "./CalcRecipe"
-
-
-
 
 const Recipe = () => {
   const {id} = useParams()
