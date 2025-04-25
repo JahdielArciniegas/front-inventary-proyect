@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { AppDispatch, RootState } from "../../store"
-import { createRecipe } from "../../reducers/recipesReducer"
+import { AppDispatch, RootState } from "@/store"
+import { createRecipe } from "@/reducers/recipesReducer"
 import styles from "./Recipe.module.css"
-import { setError, setNotification } from "../../reducers/notificationReducer"
-import { Recipe } from "../../types"
+import { setError, setNotification } from "@/reducers/notificationReducer"
+import { Recipe } from "@/types"
 
 const AddRecipe = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
   const dispatch = useDispatch<AppDispatch>()

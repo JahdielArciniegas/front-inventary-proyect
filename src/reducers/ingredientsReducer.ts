@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import ingredientsService from '../service/ingredients'
-import { AppDispatch } from '../store'
+import ingredientsService from '@service/ingredients'
+import { AppDispatch } from '@store'
 
-import { Ingredient, newIngredient } from '../types'
+import { Ingredient, newIngredient } from '@types'
 
 const initialState : Ingredient[] = []
 

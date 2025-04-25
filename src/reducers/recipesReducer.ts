@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AppDispatch } from '../store'
-import recipesService from '../service/recipes'
-import { Recipe, NewRecipe } from '../types'
+import { AppDispatch } from '@store'
+import recipesService from '@service/recipes'
+import { Recipe, NewRecipe } from '@types'
 
 const initialState : Recipe[] = []
 

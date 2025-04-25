@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { RootState } from "../../store"
+import { RootState } from "@/store"
 import {  useSelector } from "react-redux"
-import { updateIngredient } from "../../reducers/ingredientsReducer"
-import { useAppDispatch } from "../../hooks"
-import { Ingredient} from "../../types"
-import { fetchRecipes } from "../../reducers/recipesReducer"
+import { updateIngredient } from "@/reducers/ingredientsReducer"
+import { useAppDispatch } from "@/hooks"
+import { Ingredient} from "@/types"
+import { fetchRecipes } from "@/reducers/recipesReducer"
 import styles from "./Ingredients.module.css"
 
 const EditIngredient = ({id,handleEditRecipe} : {id : string, handleEditRecipe : () => void}) => {

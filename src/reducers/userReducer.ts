@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { UserState, User } from '../types'
+import { UserState, User } from '@types'
 
 
 const initialState : UserState = {

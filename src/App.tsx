@@ -1,12 +1,12 @@
-import { Login } from "./components/auth/Login"
-import Page from "./pages/Page"
+import { Login } from "@components/auth/Login"
+import Page from "@/pages/Page"
 import { BrowserRouter as Router } from "react-router"
 import { useSelector } from "react-redux"
-import { RootState } from "./store"
-import NavBar from "./components/common/NavBar"
-import styles from "./App.module.css"
-import Footer from "./components/common/Footer"
-import Notification from "./components/common/Notification"
+import { RootState } from "@store"
+import NavBar from "@components/common/NavBar"
+import styles from "@/App.module.css"
+import Footer from "@components/common/Footer"
+import Notification from "@components/common/Notification"
 
 function App() {
   const user = useSelector((state : RootState) => state.user)

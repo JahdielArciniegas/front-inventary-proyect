@@ -1,9 +1,9 @@
 import {Routes, Route} from 'react-router'
-import { Recipes } from '../components/recipes/Recipes'
-import Home from '../components/common/Home'
-import Ingredients from '../components/ingredients/Ingredients'
-import User from '../components/user/User'
-import Recipe from '../components/recipes/Recipe'
+import { Recipes } from '@components/recipes/Recipes'
+import Home from '@components/common/Home'
+import Ingredients from '@components/ingredients/Ingredients'
+import User from '@components/user/User'
+import Recipe from '@components/recipes/Recipe'
 
 
 const Page = () => {

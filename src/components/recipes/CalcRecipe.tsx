@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import {  Recipe } from "../../types"
+import {  Recipe } from "@/types"
 
 const CalcRecipe = ({recipe, unit, amount} : {recipe : Recipe, unit : string, amount : string}) => {
   const [cost, setCost] = useState("0")

@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import { Recipe as RecipeType } from "../../types"
+import { Recipe as RecipeType } from "@/types"
 import styles from "./Recipe.module.css"
 
 const CardRecipe = ({recipe,remove}: {recipe : RecipeType, remove : (id:string) => void}) => {

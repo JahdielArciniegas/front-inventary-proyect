@@ -1,9 +1,9 @@
 import { Link } from 'react-router'
 import style from './NavBar.module.css'
-import HomeIcon from '../../assets/HomeIcon'
-import RecipesIcon from '../../assets/RecipesIcon'
-import UserIcon from '../../assets/UserIcon'
-import IngredientsIcon from '../../assets/IngredientsIcon'
+import HomeIcon from '@/assets/HomeIcon'
+import RecipesIcon from '@/assets/RecipesIcon'
+import UserIcon from '@/assets/UserIcon'
+import IngredientsIcon from '@/assets/IngredientsIcon'
 import { useState } from 'react'
 
 const NavBar = () => {

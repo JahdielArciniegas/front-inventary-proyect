@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { createIngredient } from "../../reducers/ingredientsReducer"
-import { AppDispatch } from "../../store"
+import { createIngredient } from "@/reducers/ingredientsReducer"
+import { AppDispatch } from "@/store"
 import styles from "./Ingredients.module.css"
-import { setError, setNotification } from "../../reducers/notificationReducer"
+import { setError, setNotification } from "@/reducers/notificationReducer"
 
 const AddIngredient = ({handleAddRecipe} : {handleAddRecipe : () => void}) => {
   const allAmounts = ["kg","lt","unidad"]

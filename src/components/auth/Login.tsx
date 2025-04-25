@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { useAppDispatch } from "../../hooks";
-import { login } from "../../reducers/userReducer";
-import { setIngredients } from "../../reducers/ingredientsReducer";
-import { setRecipes } from "../../reducers/recipesReducer";
-import loginService from "../../service/login";
-import ingredientsService from "../../service/ingredients";
-import recipesService from "../../service/recipes";
+import { useAppDispatch } from "@/hooks";
+import { login } from "@reducers/userReducer";
+import { setIngredients } from "@reducers/ingredientsReducer";
+import { setRecipes } from "@reducers/recipesReducer";
+import loginService from "@service/login";
+import ingredientsService from "@service/ingredients";
+import recipesService from "@service/recipes";
 import styles from "./Login.module.css"
-import { setError, setNotification } from "../../reducers/notificationReducer";
+import { setError, setNotification } from "@reducers/notificationReducer";
 
 export const Login = () => {
   const [username, setUsername] = useState<string>("")

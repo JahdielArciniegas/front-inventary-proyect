@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux"
-import { AppDispatch, RootState } from "../../store"
+import { AppDispatch, RootState } from "@/store"
 import AddRecipe from "./AddRecipe"
-import { deleteRecipe } from "../../reducers/recipesReducer"
+import { deleteRecipe } from "@/reducers/recipesReducer"
 import styles from "./Recipe.module.css"
 import { useState } from "react"
-import { setError, setNotification } from "../../reducers/notificationReducer"
+import { setError, setNotification } from "@/reducers/notificationReducer"
 import CardRecipe from "./CardRecipe"
 
 export const Recipes = () => {
