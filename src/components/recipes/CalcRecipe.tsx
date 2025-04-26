@@ -84,7 +84,9 @@ const CalcRecipe = ({
   }
   return (
     <div>
-      {Number(cost).toFixed(2)} - {(Number(cost) * 4000).toFixed(2)}
+      {isNaN(Number(cost)) ? cost : Number(cost).toFixed(2)} Dolares -
+      {isNaN(Number(cost)) ? cost : " " + (Number(cost) * 4000).toFixed(0)}{" "}
+      Pesos
     </div>
   );
 };

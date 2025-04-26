@@ -3,6 +3,7 @@ import { RootState } from "@/store";
 import { useParams } from "react-router";
 import { useState } from "react";
 import CalcRecipe from "./CalcRecipe";
+import styles from "./Recipe.module.css";
 
 const Recipe = () => {
   const { id } = useParams();
@@ -21,49 +22,66 @@ const Recipe = () => {
   }
 
   return (
-    <div>
+    <div className={styles.infoRecipe}>
       <div>
         <h2>{recipe?.title}</h2>
       </div>
       <div>
-        <div>
-          <label htmlFor="">Unidad</label>
+        <div className={styles.info}>
+          <label htmlFor="">Unidad:</label>
           <p>{recipe.unit}</p>
         </div>
-        <div>
-          <label htmlFor="">Cantidad</label>
+        <div className={styles.info}>
+          <label htmlFor="">Cantidad:</label>
           <p>{recipe.amount}</p>
         </div>
-        <div>
+        <div className={styles.infoIngredient}>
           <label htmlFor="">Ingredientes</label>
-          <div>
-            {recipe?.ingredients.map((ingrediente) => (
-              <div key={ingrediente.id}>
-                <p>{ingrediente.ingredient.name}</p>
-                <p>{ingrediente.amount}</p>
-                <p>
-                  Costo en dolares{" "}
-                  {Number(ingrediente.ingredient.cost) *
-                    Number(ingrediente.amount)}
-                </p>
-              </div>
-            ))}
-          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Costo en Dolares</th>
+                <th>Costo en Pesos</th>
+              </tr>
+            </thead>
+            <tbody>
+              {recipe?.ingredients.map((ingrediente) => (
+                <tr key={ingrediente.id}>
+                  <td>{ingrediente.ingredient.name}</td>
+                  <td>{ingrediente.amount}</td>
+                  <td>
+                    {Number(ingrediente.ingredient.cost) *
+                      Number(ingrediente.amount)}
+                  </td>
+                  <td>
+                    {Number(ingrediente.ingredient.cost) *
+                      Number(ingrediente.amount) *
+                      4000}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <div>
+        <div className={styles.info}>
           {recipe.unit === "Unidad" && (
             <div>
               Costo Unitario {Number(recipe.cost) / Number(recipe.amount)}
             </div>
           )}
           <label htmlFor="">Costo total</label>
-          <p>{recipe.cost}</p>
+          <p>
+            {recipe.cost} Dolares - {(Number(recipe.cost) * 4000).toFixed(0)}{" "}
+            Pesos
+          </p>
         </div>
       </div>
       <div>
         <h3>Comprueba el precio de la receta con otras proporciones aqui...</h3>
-        <div>
-          <label htmlFor="">Unidad</label>
+        <div className={styles.info}>
+          <label htmlFor="">Unidad:</label>
           <select
             value={calUnit}
             onChange={(e) =>
@@ -80,15 +98,15 @@ const Recipe = () => {
             <option value="Unidad">Unidad</option>
           </select>
         </div>
-        <div>
-          <label htmlFor="">Cantidad</label>
+        <div className={styles.info}>
+          <label htmlFor="">Cantidad:</label>
           <input
             type="text"
             value={calAmount}
             onChange={(e) => setCalAmount(e.target.value)}
           />
         </div>
-        <div>
+        <div className={styles.info}>
           <label htmlFor="">Costo total</label>
           {recipe.unit && calUnit && calAmount && (
             <CalcRecipe recipe={recipe} unit={calUnit} amount={calAmount} />

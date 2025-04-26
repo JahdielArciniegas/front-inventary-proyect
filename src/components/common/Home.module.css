@@ -50,7 +50,6 @@ section{
   gap: 1rem;
   padding: 1rem;
   h3{
-    font-family: "comic sans ms", sans-serif;
     color: #000;
     &:hover{
       cursor: pointer;
