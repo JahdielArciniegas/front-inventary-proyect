@@ -1,46 +1,46 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { AppDispatch } from "@store"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AppDispatch } from "@store";
 
-import { NotificationState } from "@types"
+import { NotificationState } from "@types";
 
 const initialState: NotificationState = {
   notification: null,
-  error: null
-}
+  error: null,
+};
 
 const notificationSlice = createSlice({
-  name: 'notification',
+  name: "notification",
   initialState,
   reducers: {
-    showNotification(state, action : PayloadAction<string | null>) {
-      state.notification = action.payload
+    showNotification(state, action: PayloadAction<string | null>) {
+      state.notification = action.payload;
     },
-    showError(state, action : PayloadAction<string | null>) {
-      state.error = action.payload
-    }
-  }
-})
+    showError(state, action: PayloadAction<string | null>) {
+      state.error = action.payload;
+    },
+  },
+});
 
-export const { showNotification, showError } = notificationSlice.actions
+export const { showNotification, showError } = notificationSlice.actions;
 
-export const setNotification = (notification: string, time: number) =>{
+export const setNotification = (notification: string, time: number) => {
   const sec = time * 1000;
   return (dispatch: AppDispatch) => {
-    dispatch(showNotification(notification))
-    setTimeout(() =>{
-      dispatch(showNotification(null))
-    }, sec)
-  } 
-}
-
-export const setError = (error: string, time: number) =>{
-  const sec = time * 1000
-  return (dispatch: AppDispatch) => {
-    dispatch(showError(error))
+    dispatch(showNotification(notification));
     setTimeout(() => {
-      dispatch(showError(null))
-    }, sec)
-  }
-}
+      dispatch(showNotification(null));
+    }, sec);
+  };
+};
 
-export default notificationSlice.reducer
+export const setError = (error: string, time: number) => {
+  const sec = time * 1000;
+  return (dispatch: AppDispatch) => {
+    dispatch(showError(error));
+    setTimeout(() => {
+      dispatch(showError(null));
+    }, sec);
+  };
+};
+
+export default notificationSlice.reducer;
