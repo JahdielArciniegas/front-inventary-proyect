@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Recipe } from "@/types";
+import Calculator from "@/logic/Calculator";
 
 const CalcRecipe = ({
   recipe,
@@ -22,26 +23,32 @@ const CalcRecipe = ({
     }
 
     if (recipe.unit === "Molde Circular" && unit === "Molde Rectangular") {
-      const m2 = amount.split("x");
-      const molde2 = Number(m2[0]) * Number(m2[1]) * 5;
-      const molde1 = Math.pow(Number(recipe.amount) / 2, 2) * Math.PI * 5;
+      const m = amount.split("x");
+      const molde2 = Calculator.ractangleArea(Number(m[0]), Number(m[1]));
+      const molde1 = Calculator.circleArea(Number(recipe.amount));
       const result = molde2 / molde1;
-      const totalresult = recipe.ingredients.map((ingrediente) => {
-        const amountTotal = Number(ingrediente.amount) * result;
-        return Number(ingrediente.ingredient.cost) * amountTotal;
-      });
+      const totalresult = recipe.ingredients.map((ingrediente) =>
+        Calculator.calTotal(
+          Number(ingrediente.amount),
+          Number(ingrediente.ingredient.cost),
+          result
+        )
+      );
       setCost(String(totalresult.reduce((a, b) => a + b)));
     }
 
     if (recipe.unit === "Molde Rectangular" && unit === "Molde Circular") {
       const m1 = recipe.amount.split("x");
-      const molde1 = Number(m1[0]) * Number(m1[1]) * 5;
-      const molde2 = Math.pow(Number(amount) / 2, 2) * Math.PI * 5;
+      const molde1 = Calculator.ractangleArea(Number(m1[0]), Number(m1[1]));
+      const molde2 = Calculator.circleArea(Number(amount));
       const result = molde2 / molde1;
-      const totalresult = recipe.ingredients.map((ingrediente) => {
-        const amountTotal = Number(ingrediente.amount) * result;
-        return Number(ingrediente.ingredient.cost) * amountTotal;
-      });
+      const totalresult = recipe.ingredients.map((ingrediente) =>
+        Calculator.calTotal(
+          Number(ingrediente.amount),
+          Number(ingrediente.ingredient.cost),
+          result
+        )
+      );
       setCost(String(totalresult.reduce((a, b) => a + b)));
     }
 
@@ -51,25 +58,31 @@ const CalcRecipe = ({
         setCost(String(result));
       }
       if (unit === "Molde Circular") {
-        const molde1 = Math.pow(Number(recipe.amount) / 2, 2) * Math.PI * 5;
-        const molde2 = Math.pow(Number(amount) / 2, 2) * Math.PI * 5;
+        const molde1 = Calculator.circleArea(Number(recipe.amount));
+        const molde2 = Calculator.circleArea(Number(amount));
         const result = molde2 / molde1;
-        const totalresult = recipe.ingredients.map((ingrediente) => {
-          const amountTotal = Number(ingrediente.amount) * result;
-          return Number(ingrediente.ingredient.cost) * amountTotal;
-        });
+        const totalresult = recipe.ingredients.map((ingrediente) =>
+          Calculator.calTotal(
+            Number(ingrediente.amount),
+            Number(ingrediente.ingredient.cost),
+            result
+          )
+        );
         setCost(String(totalresult.reduce((a, b) => a + b)));
       }
       if (unit === "Molde Rectangular") {
         const m1 = recipe.amount.split("x");
         const m2 = amount.split("x");
-        const molde1 = Number(m1[0]) * Number(m1[1]) * 5;
-        const molde2 = Number(m2[0]) * Number(m2[1]) * 5;
+        const molde1 = Calculator.ractangleArea(Number(m1[0]), Number(m1[1]));
+        const molde2 = Calculator.ractangleArea(Number(m2[0]), Number(m2[1]));
         const result = molde2 / molde1;
-        const totalresult = recipe.ingredients.map((ingrediente) => {
-          const amountTotal = Number(ingrediente.amount) * result;
-          return Number(ingrediente.ingredient.cost) * amountTotal;
-        });
+        const totalresult = recipe.ingredients.map((ingrediente) =>
+          Calculator.calTotal(
+            Number(ingrediente.amount),
+            Number(ingrediente.ingredient.cost),
+            result
+          )
+        );
         setCost(String(totalresult.reduce((a, b) => a + b)));
       }
     }
