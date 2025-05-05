@@ -4,6 +4,7 @@ import { createIngredient } from "@/reducers/ingredientsReducer";
 import { AppDispatch } from "@/store";
 import styles from "./Ingredients.module.css";
 import { setError, setNotification } from "@/reducers/notificationReducer";
+import useFields from "@/hooks/useFields";
 
 const AddIngredient = ({
   handleAddRecipe,
@@ -11,33 +12,32 @@ const AddIngredient = ({
   handleAddRecipe: () => void;
 }) => {
   const allAmounts = ["kg", "lt", "unidad"];
-  const [name, setName] = useState("");
-  const [cost, setCost] = useState("");
-  const [currency, setCurrency] = useState("DOLAR");
+  const name = useFields("");
+  const cost = useFields("");
+  const currency = useFields("DOLAR");
   const [amount, setAmount] = useState("");
   const dispatch = useDispatch<AppDispatch>();
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     let newCost: string = "";
-    if (currency === "PESOS") {
-      newCost = String(Number(cost) / 4000);
+    if (currency.value === "PESOS") {
+      newCost = String(Number(cost.value) / 4000);
     } else {
-      newCost = cost;
+      newCost = cost.value as string;
     }
-    setCost(newCost);
 
     const newIngredient = {
-      name,
+      name: name.value as string,
       cost: newCost,
       amount,
     };
     try {
       dispatch(createIngredient(newIngredient));
-      setName("");
+      name.reset();
+      cost.reset();
       setAmount("");
-      setCost("");
-      setCurrency("DOLAR");
+      currency.reset();
       dispatch(setNotification("Ingrediente creado exitosamente", 3));
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
@@ -55,8 +55,8 @@ const AddIngredient = ({
             type="text"
             id="name"
             name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={name.value as string}
+            onChange={(e) => name.onChange(e)}
           />
         </div>
         <div className={styles.input}>
@@ -66,14 +66,14 @@ const AddIngredient = ({
               type="text"
               id="cost"
               name="cost"
-              value={cost}
-              onChange={(e) => setCost(e.target.value)}
+              value={cost.value as string}
+              onChange={(e) => cost.onChange(e)}
             />
             <select
               name="currency"
               id="currency"
-              value={currency}
-              onChange={(e) => setCurrency(e.target.value)}
+              value={currency.value as string}
+              onChange={(e) => currency.onChange(e)}
             >
               <option value="DOLAR">DOLAR</option>
               <option value="PESOS">PESOS</option>
