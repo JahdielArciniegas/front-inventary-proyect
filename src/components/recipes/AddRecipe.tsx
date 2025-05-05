@@ -5,34 +5,35 @@ import { createRecipe } from "@/reducers/recipesReducer";
 import styles from "./Recipe.module.css";
 import { setError, setNotification } from "@/reducers/notificationReducer";
 import { Recipe } from "@/types";
+import useFields from "@/hooks/useFields";
 
 const AddRecipe = ({ handleAddRecipe }: { handleAddRecipe: () => void }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const [title, setTitle] = useState("");
+  const title = useFields("");
   const ingredient = useSelector((state: RootState) => state.ingredients);
   const [ingredients, setIngredients] = useState<Recipe["ingredients"]>([]);
-  const [cost, setCost] = useState("");
-  const [unit, setUnit] = useState("Molde Circular");
-  const [amount, setAmount] = useState("");
-  const [ingredientsAmount, setIngredientsAmount] = useState("");
-  const [ingredientSelect, setIngredientSelect] = useState("");
+  const cost = useFields("");
+  const unit = useFields("Molde Circular");
+  const amount = useFields("");
+  const ingredientsAmount = useFields("");
+  const ingredientSelect = useFields("");
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const newRecipe = {
-      title,
-      unit: unit as "Molde Circular" | "Molde Rectangular" | "Unidad",
-      amount,
-      cost,
+      title: title.value as string,
+      unit: unit.value as "Molde Circular" | "Molde Rectangular" | "Unidad",
+      amount: amount.value as string,
+      cost: cost.value as string,
       ingredients,
     };
     try {
       dispatch(createRecipe(newRecipe));
-      setTitle("");
-      setCost("");
-      setUnit("");
-      setAmount("");
+      title.reset();
+      cost.reset();
+      unit.reset();
+      amount.reset();
       setIngredients([]);
       handleAddRecipe();
       dispatch(setNotification("Receta creada exitosamente", 3));
@@ -44,13 +45,13 @@ const AddRecipe = ({ handleAddRecipe }: { handleAddRecipe: () => void }) => {
 
   const AddIngredient = () => {
     const newIngredient = {
-      id: ingredientSelect,
-      amount: ingredientsAmount,
-      ingredient: ingredient.find((ing) => ing.id === ingredientSelect)!,
+      id: ingredientSelect.value as string,
+      amount: ingredientsAmount.value as string,
+      ingredient: ingredient.find((ing) => ing.id === ingredientSelect.value)!,
     };
     setIngredients(ingredients.concat(newIngredient));
-    setIngredientSelect("");
-    setIngredientsAmount("");
+    ingredientSelect.reset();
+    ingredientsAmount.reset();
   };
 
   return (
@@ -66,8 +67,8 @@ const AddRecipe = ({ handleAddRecipe }: { handleAddRecipe: () => void }) => {
               type="text"
               id="title"
               name="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={title.value as string}
+              onChange={(e) => title.onChange(e)}
             />
           </div>
           <div className={styles.input}>
@@ -77,8 +78,10 @@ const AddRecipe = ({ handleAddRecipe }: { handleAddRecipe: () => void }) => {
             <select
               name="unit"
               id="unit"
-              value={unit}
-              onChange={(e) => setUnit(e.target.value)}
+              value={
+                unit.value as "Molde Circular" | "Molde Rectangular" | "Unidad"
+              }
+              onChange={(e) => unit.onChange(e)}
             >
               <option value="Molde Circular">Molde Circular</option>
               <option value="Molde Rectangular">Molde Rectangular</option>
@@ -88,9 +91,9 @@ const AddRecipe = ({ handleAddRecipe }: { handleAddRecipe: () => void }) => {
           <div className={styles.input}>
             <label htmlFor="amount">
               <h4>
-                {unit === "Unidad"
+                {unit.value === "Unidad"
                   ? "Unidades"
-                  : unit === "Molde Circular"
+                  : unit.value === "Molde Circular"
                   ? "Diametro"
                   : "Medida"}
               </h4>
@@ -99,12 +102,12 @@ const AddRecipe = ({ handleAddRecipe }: { handleAddRecipe: () => void }) => {
               type="text"
               id="amount"
               name="amount"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              value={amount.value as string}
+              onChange={(e) => amount.onChange(e)}
               placeholder={
-                unit === "Unidad"
+                unit.value === "Unidad"
                   ? "Unidades formato 1"
-                  : unit === "Molde Circular"
+                  : unit.value === "Molde Circular"
                   ? "Diametro formato 1"
                   : "Medida en formato 1x1"
               }
@@ -119,8 +122,8 @@ const AddRecipe = ({ handleAddRecipe }: { handleAddRecipe: () => void }) => {
               <select
                 name="ingredients"
                 id="ingredients"
-                value={ingredientSelect}
-                onChange={(e) => setIngredientSelect(e.target.value)}
+                value={ingredientSelect.value as string}
+                onChange={(e) => ingredientSelect.onChange(e)}
               >
                 <option value="" disabled>
                   Ingrediente...
@@ -140,8 +143,8 @@ const AddRecipe = ({ handleAddRecipe }: { handleAddRecipe: () => void }) => {
                 type="text"
                 id="ingredientsAmount"
                 name="ingredientsAmount"
-                value={ingredientsAmount}
-                onChange={(e) => setIngredientsAmount(e.target.value)}
+                value={ingredientsAmount.value as string}
+                onChange={(e) => ingredientsAmount.onChange(e)}
               />
             </div>
             <button type="button" onClick={AddIngredient}>
