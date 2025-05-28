@@ -1,9 +1,6 @@
 import { Link } from "react-router";
 import style from "./NavBar.module.css";
-import HomeIcon from "@/assets/HomeIcon";
-import RecipesIcon from "@/assets/RecipesIcon";
-import UserIcon from "@/assets/UserIcon";
-import IngredientsIcon from "@/assets/IngredientsIcon";
+import { House, Cake, ShoppingBasket, User } from "lucide-react";
 import { useState } from "react";
 
 const NavBar = () => {
@@ -16,7 +13,7 @@ const NavBar = () => {
             onClick={() => setSelect("HOME")}
             className={select === "HOME" ? style.active : ""}
           >
-            <HomeIcon />
+            <House className={style.icon} />
             Inicio
           </li>
         </Link>
@@ -25,7 +22,7 @@ const NavBar = () => {
             onClick={() => setSelect("RECIPE")}
             className={select === "RECIPE" ? style.active : ""}
           >
-            <RecipesIcon />
+            <Cake className={style.icon} />
             Recetas
           </li>
         </Link>
@@ -34,7 +31,7 @@ const NavBar = () => {
             onClick={() => setSelect("INGREDIENT")}
             className={select === "INGREDIENT" ? style.active : ""}
           >
-            <IngredientsIcon />
+            <ShoppingBasket className={style.icon} />
             Ingredientes
           </li>
         </Link>
@@ -43,7 +40,7 @@ const NavBar = () => {
             onClick={() => setSelect("USER")}
             className={select === "USER" ? style.active : ""}
           >
-            <UserIcon />
+            <User className={style.icon} />
             Usuario
           </li>
         </Link>

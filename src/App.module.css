@@ -1,9 +1,10 @@
 .container {
+  margin: 1rem;
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 4fr;
   height: 100dvh;
   grid-template-rows: 1fr auto;
-  gap: 1rem;
+  gap: 0.5rem;
   position: relative;
 }
 
@@ -13,7 +14,7 @@
 }
 
 main{
-  margin: 1rem 5rem 2rem;
+  margin-inline: 2rem;
   padding: 1rem 5rem 2rem;
   background-color: var(--primary-color);
   border-radius: 2rem;

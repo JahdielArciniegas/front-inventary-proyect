@@ -12,8 +12,8 @@
       "@store": ["./src/store"],
       "@types": ["./src/types"],
       "@components/*": ["./src/components/*"],
-      "@reducers/*" : ["./src/reducers/*"],
-      "@service/*" : ["./src/service/*"]
+      "@reducers/*": ["./src/reducers/*"],
+      "@service/*": ["./src/service/*"]
     },
 
     /* Bundler mode */
