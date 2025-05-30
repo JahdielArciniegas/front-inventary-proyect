@@ -4,21 +4,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2rem;
 }
 
 .input{
+  width: 400px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding: 1rem 0;
 
   input{
-    width: 90%;
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
-    background-color: var(--pastel-yellow);
+    background-color: var(--primary-color);
+    color: var(--black);
     &:focus{
       outline: none;
       border-color: var(--black);
@@ -35,5 +37,21 @@ form{
   align-items: center;
   button{
     align-self: self-end;
+    width: 10rem;
+    height: 2rem;
+    background-color: var(--black);
+    color: var(--white);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 2rem;
+    &:hover{
+      background-color: var(--pastel-yellow);
+      color: var(--black);
+    }
   }
 }

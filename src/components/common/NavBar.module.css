@@ -16,7 +16,7 @@ nav{
   background-color: var(--primary-color);
   width: 15rem;
   padding: 1rem ;
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 a {

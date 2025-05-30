@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Rubik', sans-serif;
   background-color: var(--black);
   --primary-color: #F0EADF;         
   --secondary-color: #A67C63;       
@@ -30,5 +30,6 @@ p,h1,h2,h3,h4,h5,h6{
 }
 
 h1,h2,h3,h4,h5,h6{
-  font-family: 'comic sans ms', sans-serif;
+  font-weight: 600;
+  color: var(--black);
 }

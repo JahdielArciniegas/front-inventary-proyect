@@ -17,5 +17,5 @@ main{
   margin-inline: 2rem;
   padding: 1rem 5rem 2rem;
   background-color: var(--primary-color);
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
